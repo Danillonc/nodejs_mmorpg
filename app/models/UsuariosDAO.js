@@ -12,6 +12,19 @@ UsuariosDAO.prototype.inserirUsuario = function(usuario){
     
 }
 
+UsuariosDAO.prototype.autenticar = function(usuario){
+    this._conn.open(function(err, mongoclient){
+        mongoclient.collection("usuarios", function(err, collection){
+            collection.find(usuario);
+            mongoclient.close();
+        }); 
+    });
+     
+
+	console.log(usuario);
+
+}	
+
 module.exports = function(){
     return UsuariosDAO;
 }
